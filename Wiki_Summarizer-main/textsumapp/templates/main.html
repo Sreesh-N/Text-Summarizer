@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>
+    <title>Text Summarizer</title>
+</head>
+<style>
+
+
+
+    body{
+        margin: 50px;
+        font-family: maiandra GD;
+        background: url('../static/images/bg2.jpg');
+        background-repeat:no-repeat;
+        background-size:100%;
+        background-size: cover;
+    }
+
+    button{
+        height: 40px;
+        width: 150px;
+        font-family: maiandra gd;
+        font-weight: bold;
+        font-size: 20px;
+        border: 3px solid darkorange;
+        color: black;
+        background-color: transparent;
+        transition: 0.3s;
+    }
+
+    label{
+        font-size: 20px;
+        font-weight: bold;
+        
+    }
+
+    input{
+        background-color: transparent;  
+        font-size: 15px;
+        height: 20px;
+        width: 250px;
+    }
+
+    select{
+        background-color: transparent;
+        font-weight: bold;
+        font-size: 15px;
+        height: 30px;
+        width: 185px;   
+    }
+
+
+    button:hover{
+        transition:0.3s ;
+        transform: scale(1.2);
+        color: white;
+        background-color: darkorange;
+    }
+
+    .content{
+        overflow: auto;
+        position: relative;
+        margin: 5%;
+        padding: 75px;
+        border: 5px solid rgb(60, 255, 200);
+    }
+
+    .title{
+        font-size: 40px;
+    }
+
+</style>
+
+<body>
+    <div class='title'>
+        <center><h2>Text Summarization</h2></center>    
+    </div>
+    <div class='content'>
+    <details>
+        <summary style='font-size: 35px;'>Summarize 🕣</summary>
+    <center>
+    {% if summary %}
+    <form method="post" action='/summarizer/'>
+        <h3>Paste the URL to summarize <span style='font-size: 40px;'>⮷</span></h3>
+        {% csrf_token %}
+        {{form.as_p}}<br>
+        <button type="submit">Summarize</button>
+    </form>
+    </details>
+    <br>
+    <br>
+    <hr>
+    <h2 style='font-size: 40px;'>Summary</h2>
+    
+    {% for i in summary %}
+        {% if i|length < 30 %}
+        
+            <h3>{{ i }}</h3>
+        {% else %}
+            {{i}}<br>
+        {% endif %}
+    
+    {% endfor %}
+
+    {% else %}
+
+    <form method="post" action='/summarizer/'>
+        <h3>Paste the URL to summarize <span style='font-size: 40px;'>⮷</span></h3>
+        {% csrf_token %}
+        {{form.as_p}}<br>
+        <button type="submit">Summarize</button>
+    </form>
+    {% endif %}
+
+</center>
+</div>
+</body>
