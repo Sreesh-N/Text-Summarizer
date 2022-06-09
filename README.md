@@ -1,5 +1,5 @@
 # Text-Summarizer
-A Django app where you can summarize wikipedia site links.
+A Django app where you can summarize wikipedia links.
 To run this app install docker hub for windows.
 Download this repositry and extract it.
 To build this docker application use the command: docker-compose run web django-admin startproject textsumapp
